@@ -1,0 +1,7 @@
+/* Keep Next.js defaults minimal; site styling comes from mirrored Drupal CSS. */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

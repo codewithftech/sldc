@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SLDC Next.js App
 
-## Getting Started
+This is the Next.js version of the mirrored SLDC static site. It keeps the **same HTML structure, CSS, JS, images, and fonts** as the original download.
 
-First, run the development server:
+## Run locally
 
 ```bash
+cd next-app
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Production build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+next-app/
+├── app/                         # Next.js routes (one folder per page)
+├── components/
+│   ├── layout/                  # Shared shell components
+│   │   ├── Header.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Drawer.tsx
+│   │   ├── HeaderBottomBar.tsx
+│   │   ├── PageBody.tsx
+│   │   ├── SiteStyles.tsx
+│   │   ├── SiteScripts.tsx
+│   │   └── SvgSprites.tsx
+│   └── pages/                   # Page-specific content components
+│       ├── HomePageContent.tsx
+│       ├── AboutSldcPageContent.tsx
+│       └── ...
+├── public/                      # Junctions to original static assets
+│   ├── sites/
+│   ├── themes/
+│   ├── profiles/
+│   ├── modules/
+│   └── core/
+└── scripts/ (in parent folder)  # HTML conversion utilities
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/` Home
+- `/about-sldc`
+- `/leadership`
+- `/services`
+- `/operations`
+- `/hse-quality`
+- `/people-careers`
+- `/news-updates`
+- `/contact`
+- `/privacy-policy`
+- `/cookie-policy`
+- `/terms-use`
+- `/sitemap`
+- `/speakup-hotline`
+- `/search-result`
 
-## Deploy on Vercel
+## Static assets
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Asset folders in `public/` are Windows junctions to the original mirrored folders in the parent directory. If links break after moving the project, run:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bat
+setup-public-links.bat
+```
+
+## Re-convert HTML after site updates
+
+From the repo root:
+
+```bash
+python scripts/convert_html.py
+python scripts/extract_layout.py
+python scripts/convert_layout.py
+```
+
+## Notes
+
+- Original Drupal CSS/JS is loaded unchanged for visual parity.
+- Some third-party assets (Bootstrap, Slick, Google Fonts, cookie manager) still load from CDN when internet is available.
+- `governance-and-compliance` was not in the mirror (403 on download).
