@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import HseQualityPageContent from "@/components/pages/HseQualityPageContent";
+import PageContent from "@/components/pages/hse-quality";
 
 export const metadata: Metadata = {
   title: "HSE &amp; Quality | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="page-node content-lock-not-locked no-js path-node page-node-type-bricky">
-      <HseQualityPageContent />
+      <PageContent />
     </PageBody>
   );
 }

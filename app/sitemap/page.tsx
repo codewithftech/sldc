@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import SitemapPageContent from "@/components/pages/SitemapPageContent";
+import PageContent from "@/components/pages/sitemap";
 
 export const metadata: Metadata = {
   title: "Sitemap | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="no-js path-sitemap">
-      <SitemapPageContent />
+      <PageContent />
     </PageBody>
   );
 }

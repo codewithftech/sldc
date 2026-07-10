@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import TermsUsePageContent from "@/components/pages/TermsUsePageContent";
+import PageContent from "@/components/pages/terms-use";
 
 export const metadata: Metadata = {
   title: "Terms of Use | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="page-node content-lock-not-locked no-js path-node page-node-type-bricky">
-      <TermsUsePageContent />
+      <PageContent />
     </PageBody>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import ContactPageContent from "@/components/pages/ContactPageContent";
+import PageContent from "@/components/pages/contact";
 
 export const metadata: Metadata = {
   title: "Contact | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="page-node content-lock-not-locked no-js path-node page-node-type-bricky">
-      <ContactPageContent />
+      <PageContent />
     </PageBody>
   );
 }

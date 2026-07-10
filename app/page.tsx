@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import HomePageContent from "@/components/pages/HomePageContent";
+import PageContent from "@/components/pages/home";
 
 export const metadata: Metadata = {
   title: "Home | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="page-node content-lock-not-locked no-js path-frontpage page-node-type-bricky">
-      <HomePageContent />
+      <PageContent />
     </PageBody>
   );
 }

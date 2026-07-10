@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import PageBody from "@/components/layout/PageBody";
-import SearchResultPageContent from "@/components/pages/SearchResultPageContent";
+import PageContent from "@/components/pages/search-result";
 
 export const metadata: Metadata = {
   title: "Search result | SLDC",
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <PageBody bodyClassName="no-js path-search-result">
-      <SearchResultPageContent />
+      <PageContent />
     </PageBody>
   );
 }

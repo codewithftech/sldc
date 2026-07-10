@@ -34,10 +34,18 @@ next-app/
 │   │   ├── SiteStyles.tsx
 │   │   ├── SiteScripts.tsx
 │   │   └── SvgSprites.tsx
-│   └── pages/                   # Page-specific content components
-│       ├── HomePageContent.tsx
-│       ├── AboutSldcPageContent.tsx
-│       └── ...
+│   └── pages/                   # Per-route page folders
+│       ├── home/
+│       │   ├── index.tsx        # page composer
+│       │   ├── HeroBanner.tsx
+│       │   ├── KeyProofPoints.tsx
+│       │   └── ...
+│       ├── about-sldc/
+│       │   ├── index.tsx
+│       │   ├── PageBanner.tsx
+│       │   ├── WhoWeAre.tsx
+│       │   └── ...
+│       └── _staging/            # temp monolithic files from HTML convert
 ├── public/                      # Junctions to original static assets
 │   ├── sites/
 │   ├── themes/
@@ -81,6 +89,14 @@ From the repo root:
 python scripts/convert_html.py
 python scripts/extract_layout.py
 python scripts/convert_layout.py
+```
+
+`convert_html.py` writes staging files and automatically runs `split_pages.py` to regenerate per-route section components.
+
+To re-split only (without re-converting HTML):
+
+```bash
+python scripts/split_pages.py
 ```
 
 ## Notes
