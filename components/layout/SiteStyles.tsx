@@ -1,5 +1,3 @@
-import Script from "next/script";
-
 const stylesheets = [
   "/themes/contrib/stable/css/core/components/progress.module.css",
   "/themes/contrib/stable/css/core/components/ajax-progress.module.css",
