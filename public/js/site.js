@@ -502,28 +502,53 @@
     if (social && contact) contact.appendChild(social);
   }
 
+  function whenSwiperReady(fn) {
+    if (typeof window.Swiper === "function") {
+      fn();
+      return;
+    }
+    var attempts = 0;
+    var timer = setInterval(function () {
+      attempts += 1;
+      if (typeof window.Swiper === "function") {
+        clearInterval(timer);
+        fn();
+      } else if (attempts > 100) {
+        clearInterval(timer);
+      }
+    }, 50);
+  }
+
   /* ---------- Swiper: signpost grids ---------- */
   function initSignpostSwipers() {
-    if (typeof window.Swiper !== "function") return;
     $$("[data-signpost-swiper]").forEach(function (el) {
+      if (el.swiper) return;
       var slides = $$(".swiper-slide", el);
       if (!slides.length) return;
-      var prev = el.querySelector("[data-arrow-button]:first-of-type");
-      var next = el.querySelector("[data-arrow-button]:last-of-type");
-      var pag = el.querySelector("[data-carousel-pagination]");
+      var swipeOnly = el.hasAttribute("data-signpost-swiper-swipe-only");
+      var prev = swipeOnly ? null : el.querySelector("[data-arrow-button]:first-of-type");
+      var next = swipeOnly ? null : el.querySelector("[data-arrow-button]:last-of-type");
+      var pag = swipeOnly ? null : el.querySelector("[data-carousel-pagination]");
       var spv = parseInt(el.getAttribute("data-slides-per-view") || "3", 10);
       var tablet = parseInt(el.getAttribute("data-tablet-slides-per-view") || String(spv), 10);
       var mobile = parseFloat(el.getAttribute("data-mobile-slides-per-view") || "1.36");
+      var gapDesktop = slides.length < 2 ? 0 : 32;
       new window.Swiper(el, {
-        autoHeight: true,
-        slidesPerView: spv,
+        autoHeight: !swipeOnly,
+        slidesPerView: mobile,
         spaceBetween: 16,
-        navigation: { prevEl: prev, nextEl: next },
+        allowTouchMove: true,
+        simulateTouch: true,
+        grabCursor: swipeOnly,
+        watchOverflow: false,
+        observer: true,
+        observeParents: true,
+        navigation: prev && next ? { prevEl: prev, nextEl: next } : undefined,
         pagination: pag ? { el: pag, clickable: true } : undefined,
         breakpoints: {
           0: { slidesPerView: mobile, spaceBetween: 16 },
           768: { slidesPerView: tablet, spaceBetween: 16 },
-          1200: { slidesPerView: spv, spaceBetween: slides.length < 2 ? 0 : 32 },
+          1200: { slidesPerView: spv, spaceBetween: gapDesktop },
         },
       });
     });
@@ -531,21 +556,23 @@
 
   /* ---------- Swiper: signpost carousels ---------- */
   function initSignpostCarousels() {
-    if (typeof window.Swiper !== "function") return;
     $$("[data-signpost-carousel-wrapper]").forEach(function (wrap) {
       var el = wrap.querySelector("[data-signpost-carousel]");
-      if (!el) return;
+      if (!el || el.swiper) return;
       var prev = wrap.querySelector("[data-arrow-button]:first-of-type");
       var next = wrap.querySelector("[data-arrow-button]:last-of-type");
+      var slideGapCss = el.classList.contains("services-signpost-carousel");
+      var gapMobile = slideGapCss ? 0 : 16;
+      var gapDesktop = slideGapCss ? 0 : 32;
       new window.Swiper(el, {
         slidesPerView: 1.355,
-        spaceBetween: 16,
+        spaceBetween: gapMobile,
         navigation: { prevEl: prev, nextEl: next },
         keyboard: { enabled: true },
         breakpoints: {
-          360: { slidesPerView: 1.355, spaceBetween: 16 },
-          768: { slidesPerView: 2, spaceBetween: 16 },
-          992: { slidesPerView: "auto", spaceBetween: 32 },
+          360: { slidesPerView: 1.355, spaceBetween: gapMobile },
+          768: { slidesPerView: 2, spaceBetween: gapMobile },
+          992: { slidesPerView: "auto", spaceBetween: gapDesktop },
         },
       });
     });
@@ -1058,8 +1085,10 @@
     initGlobalDomTweaks();
     jsForLargeScreen();
     initTabs();
-    initSignpostSwipers();
-    initSignpostCarousels();
+    whenSwiperReady(function () {
+      initSignpostSwipers();
+      initSignpostCarousels();
+    });
     initCounters();
     initLeadershipProfiles();
     initVideoPopups();

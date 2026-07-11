@@ -38,12 +38,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <Script src="https://www.youtube.com/iframe_api" strategy="lazyOnload" />
       <Script src="https://player.vimeo.com/api/player.js" strategy="lazyOnload" />
       {/* Swiper library (used by site.js for carousels) */}
-      <Script
-        src="/sites/sldc/themes/investis_project/js/swiper-bundle.min.js"
-        strategy="beforeInteractive"
-      />
-      {/* Single consolidated site behaviors */}
-      <Script src="/js/site.js" strategy="afterInteractive" />
+      <Script id="swiper-bundle" src="/js/swiper-bundle.min.js" strategy="beforeInteractive" />
+      {/* Single consolidated site behaviors (after Swiper) */}
+      <Script id="site-js" src="/js/site.js" strategy="afterInteractive" />
     </>
   );
 }

@@ -36,7 +36,7 @@ export default function DrillingServices() {
             						</div>
             					</div>
             					<div className="col-sm-12 col-xl-7">
-            						<div className="swiper" data-signpost-carousel>
+            						<div className="swiper services-signpost-carousel" data-signpost-carousel>
             							<div className="swiper-wrapper">
                             											                      																																	
                     																																																		

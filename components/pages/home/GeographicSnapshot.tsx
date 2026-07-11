@@ -40,7 +40,7 @@ export default function GeographicSnapshot() {
             			</div>
             												<div className="row justify-content-center">
             						<div className="col-12 col-xl-12">
-            							<div className="swiper" data-signpost-swiper data-slides-per-view='3' data-mobile-slides-per-view="1.36" data-tablet-slides-per-view="2">
+            							<div className="swiper" data-signpost-swiper data-signpost-swiper-swipe-only data-slides-per-view="3" data-mobile-slides-per-view="1.36" data-tablet-slides-per-view="2">
             								<div className="swiper-wrapper">
 																																																	
 																																																												
@@ -91,11 +91,6 @@ export default function GeographicSnapshot() {
             											</div>
             										</div>
             																	</div>
-            								<div className="d-flex gap-xs-1 carousel-lines align-items-center justify-content-center p-xs-1 w-max-content ms-auto me-auto mt-md-3 d-none d-md-flex">
-            									<button className="arrow-button arrow-button--transparent icon-chevron-left " data-arrow-button aria-label="Previous"></button>
-            									<div className=" d-flex gap-xs-2 align-items-center w-auto" data-carousel-pagination></div>
-            									<button className="arrow-button arrow-button--transparent icon-chevron-right " data-arrow-button aria-label="Next"></button>
-            								</div>
             							</div>
             						</div>
             					</div>

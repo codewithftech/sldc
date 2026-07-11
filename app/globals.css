@@ -682,3 +682,27 @@ body {
     padding: 30px 0;
   }
 }
+
+/* Services signpost carousels: slide spacing */
+.services-signpost-carousel .swiper-slide {
+  margin-right: 16px;
+}
+
+@media (min-width: 992px) {
+  .services-signpost-carousel .swiper-slide {
+    margin-right: 32px;
+  }
+}
+
+/* Home signpost swipers: 3-up desktop, swipe on mobile */
+.multiple-signposts .swiper[data-signpost-swiper-swipe-only],
+.further-links-swiper {
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .multiple-signposts .swiper[data-signpost-swiper-swipe-only],
+  .further-links-swiper {
+    margin-right: 0;
+  }
+}
