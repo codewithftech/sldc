@@ -658,3 +658,27 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* Site header: align desktop search icon with main nav */
+@media (min-width: 1200px) {
+  header.header .header__content {
+    align-items: center;
+  }
+
+  header.header .navigation,
+  header.header .header-link-items {
+    align-self: center;
+  }
+
+  header.header .header-link-items__list {
+    align-items: center;
+  }
+
+  header.header .header-search-button.header-link-items__link {
+    height: auto;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+  }
+}
