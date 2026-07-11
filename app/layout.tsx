@@ -19,11 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr">
+    <html lang="en" dir="ltr" className="js">
       <head>
         <SiteStyles />
       </head>
       <body className="page-node content-lock-not-locked no-js path-frontpage page-node-type-bricky">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.body.classList.replace('no-js','has-js');",
+          }}
+        />
         <a href="#main-content" className="visually-hidden focusable">
           Skip to main content
         </a>
